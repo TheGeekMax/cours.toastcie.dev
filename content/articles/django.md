@@ -6,13 +6,13 @@
 
 Le modèle MVC est un modèle de conception qui permet de séparer les données, la logique et l'interface utilisateur d'une application. Il est composé de trois parties :
 
-![Modèle MVC](/pictures/pics/mvc.png)
+![Modèle MVC](/pictures/artcontent/django/mvc.png)
 
 ### modèle MVC dans django
 
 Django utilise le modèle MVC, mais il le nomme MTV (Modèle Template Vue). Il est composé de trois parties :
 
-![Modèle MTV](/pictures/pics/mtc.png)
+![Modèle MTV](/pictures/artcontent/django/mtc.png)
 
 ## TD1 - instalation
 
