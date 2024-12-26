@@ -15,22 +15,34 @@
         <div class="offcanvas-body">
             <ul class="nav flex-line">
                 <sidebarLink to="/">Home</sidebarLink>
-                <sidebarLink>nope</sidebarLink>
+                <sidebarLink to="/articles">articles</sidebarLink>
                 <slot name="sidebar"/>
             </ul>
         </div>
     </div>
 
     <div class="content flex-grow-1 p-3">
+        <p v-if="isArticles">oui {{ detail }}</p>
         <slot />
     </div>
   </div>
 </template>
 
-<script>
-export default {
+<script setup lang="ts">
+//get url
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+const uri = route.path.split('/').reverse()
+const isArticles = uri[1] === 'articles'
+const articleName = uri[0]
+const detail = ref('')
+
+if(isArticles) {
+    const { data } = await useFetch('/api/getarticledetail/' + articleName)
+    detail.value = data
 }
+
 </script>
 
 <style>

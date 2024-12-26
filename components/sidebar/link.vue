@@ -29,7 +29,7 @@
 </script>
 
 <style scoped>
-.sidebar-link {
-  width: 150px ;
-}
+  .sidebar-link {
+    width: 150px ;
+  }
 </style>
