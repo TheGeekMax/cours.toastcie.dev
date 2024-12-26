@@ -1,34 +1,35 @@
 <template>
     <li class="nav-item">
-        <a class="btn btn-primary m-2 sidebar-link" href="$to" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar">
-            <slot />
-        </a>
+        <NuxtLink class="btn btn-primary m-2 sidebar-link" :to="to" @click="dismissOffcanvas">
+          <slot />
+        </NuxtLink>
     </li>
 </template>
 
 <script>
-export default {
-  name: 'sideLink',
-  props: {
-    to: {
-        type: String,
-        required: false,
-        default: '#'
+  export default {
+    name: 'sideLink',
+    props: {
+      to: {
+          type: String,
+          required: false,
+          default: '#'
+      }
+    },
+    methods: {
+      dismissOffcanvas() {
+        const offcanvasElement = document.getElementById('offcanvasSidebar');
+        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+        if (offcanvasInstance) {
+          offcanvasInstance.hide();
+        }
+      }
     }
   }
-}
 </script>
 
 <style scoped>
 .sidebar-link {
   width: 150px ;
 }
-
-/*
-@media (max-width: 992px) {
-  .sidebar-link {
-    width: 100%; 
-  }
-}
-*/
 </style>
