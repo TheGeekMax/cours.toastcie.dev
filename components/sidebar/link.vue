@@ -1,5 +1,5 @@
 <template>
-    <li class="nav-item px-3 px-lg-0 py-1 py-lg-2">
+    <li class="nav-item px-3 px-lg-0">
         <NuxtLink class="nav-link active m-2" :to="to" @click="dismissOffcanvas">
           <slot />
         </NuxtLink>

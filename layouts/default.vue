@@ -1,6 +1,6 @@
 <template>
     
-    <nav class="navbar navbar-expand-lg shadow">
+    <nav class="navbar navbar-expand-lg shadow fixed-top bg-light">
         <div class="container px-4">
             <h5>AppName</h5>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
@@ -16,28 +16,25 @@
                 <ul class="navbar-nav ms-lg-auto p-4 p-lg-0" id="navbar-links">
                     <SidebarLink to="/">Home</SidebarLink>
                     <SidebarLink to="/articles">Articles</SidebarLink>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown Test
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas">Action</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas">Another action</a></li>
-                    </ul>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="content flex-grow-1 p-3" id="content" ref="content">
+    <div class="content flex-grow-1 p-3 container" id="content" ref="content">
         <slot />
     </div>
 </template>
 
+<style>
+img{
+    max-width: 200px;
+}
+</style>
+
 <script setup lang="ts">
 //get url
-
 
 const route = useRoute()
 const uri = route.path.split('/').reverse()
@@ -45,7 +42,7 @@ const isArticles = uri[1] === 'articles'
 
 onMounted(() => {
     //get the 2nd child of test
-    if(!isArticles || true) return
+    if(!isArticles) return
 
     const side = document.getElementById('navbar-links')
     
@@ -68,7 +65,7 @@ let createDropDown = (name :string, details : { name: string; id: string }[]) =>
 
     //create Name button
     let nameButton = document.createElement('a')
-    nameButton.classList.add('nav-link','dropdown-toggle')
+    nameButton.classList.add('nav-link','dropdown-toggle','m-2')
     nameButton.setAttribute('type', 'button')
     nameButton.setAttribute('role', 'button')
     nameButton.setAttribute('data-bs-toggle', 'dropdown')
@@ -85,6 +82,7 @@ let createDropDown = (name :string, details : { name: string; id: string }[]) =>
         a.classList.add('dropdown-item')
         a.href = '#' + details[i].id
         a.innerText = details[i].name
+        a.addEventListener('click', dismissOffcanvas)
         li.appendChild(a)
         dropdownMenu.appendChild(li)
     }
@@ -137,6 +135,13 @@ function getArticleDetail(article: HTMLElement[]) : { name: string; details: { n
     details.value.push({ name: currentName.value, details: subDetails.value, id : currentId.value })
     return details.value
 }
+
+//for closing offcanvas on click
+const dismissOffcanvas = () => {
+    const offcanvasElement = document.getElementById('top-navbar');
+    const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+    if (offcanvasInstance) {
+        offcanvasInstance.hide();
+    }
+}
 </script>
-
-
