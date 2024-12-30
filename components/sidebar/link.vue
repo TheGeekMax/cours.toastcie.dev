@@ -1,6 +1,6 @@
 <template>
-    <li class="nav-item">
-        <NuxtLink class="btn btn-primary m-2 sidebar-link" :to="to" @click="dismissOffcanvas">
+    <li class="nav-item px-3 px-lg-0 py-1 py-lg-2">
+        <NuxtLink class="nav-link active m-2" :to="to" @click="dismissOffcanvas">
           <slot />
         </NuxtLink>
     </li>
@@ -13,7 +13,7 @@
       to: {
           type: String,
           required: false,
-          default: '#'
+          default: '#',
       }
     },
     methods: {
@@ -27,9 +27,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .sidebar-link {
-    width: 150px ;
-  }
-</style>

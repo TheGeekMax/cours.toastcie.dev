@@ -1,44 +1,53 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">MyApp</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    
+    <nav class="navbar navbar-expand-lg shadow">
+        <div class="container px-4">
+            <h5>AppName</h5>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="top-navbar" aria-labelledby="top-navbarLabel">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
+                    <div class="d-flex justify-content-between w-100">
+                        <h5>AppName</h5>
+                        <span class="navbar-toggler-icon"></span>
+                    </div>
+                </button>
+                <ul class="navbar-nav ms-lg-auto p-4 p-lg-0" id="navbar-links">
+                    <SidebarLink to="/">Home</SidebarLink>
+                    <SidebarLink to="/articles">Articles</SidebarLink>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown Test
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas">Action</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas">Another action</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-
-    <div class="offcanvas-lg offcanvas-start" data-bs-theme="dark" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
-        <div class="offcanvas-header text-white">
-            <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#offcanvasSidebar"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav flex-line" id="sidebar">
-                <sidebarLink to="/">Home</sidebarLink>
-                <sidebarLink to="/articles">articles</sidebarLink>
-                <slot name="sidebar"/>
-            </ul>
-        </div>
-    </div>
 
     <div class="content flex-grow-1 p-3" id="content" ref="content">
         <slot />
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
 //get url
 
+
 const route = useRoute()
 const uri = route.path.split('/').reverse()
 const isArticles = uri[1] === 'articles'
 
-onMounted(async () => {
+onMounted(() => {
     //get the 2nd child of test
-    if(!isArticles) return
+    if(!isArticles || true) return
 
-    const side = document.getElementById('sidebar')
+    const side = document.getElementById('navbar-links')
     
     let data = document.getElementById('content')?.querySelector('div')
     let arrContent = Array.from(data?.children)
@@ -53,15 +62,16 @@ onMounted(async () => {
 
 //for dropdown creation
 let createDropDown = (name :string, details : { name: string; id: string }[]) => {
-    let mainDiv = document.createElement('div')
+    let mainDiv = document.createElement('li')
+    mainDiv.classList.add('nav-item','dropdown')
     mainDiv.classList.add('dropdown')
 
     //create Name button
-    let nameButton = document.createElement('button')
-    nameButton.classList.add('btn', 'btn-secondary', 'dropdown-toggle')
+    let nameButton = document.createElement('a')
+    nameButton.classList.add('nav-link','dropdown-toggle')
     nameButton.setAttribute('type', 'button')
+    nameButton.setAttribute('role', 'button')
     nameButton.setAttribute('data-bs-toggle', 'dropdown')
-    nameButton.setAttribute('aria-expanded', 'false')
     nameButton.innerText = name
     mainDiv.appendChild(nameButton)
 
@@ -94,9 +104,9 @@ let detectTag = (tag : HTMLElement) => {
     return { tag : tagType, name : tagName, id: tagId }
 }
 
-function getArticleDetail(article: HTMLElement[]) : { name: string; details: { name: string; id: string }[] }[] {
+function getArticleDetail(article: HTMLElement[]) : { name: string; details: { name: string; id: string }[]; id: string }[] {
     let index = ref(0)
-    let details = ref<{ name: string; details: { name: string; id: string }[] }[]>([])
+    let details = ref<{ name: string; details: { name: string; id: string }[]; id:string }[]>([])
 
     //find the first h2
 
@@ -109,33 +119,24 @@ function getArticleDetail(article: HTMLElement[]) : { name: string; details: { n
     }
 
     let currentName = ref('')
+    let currentId = ref('')
     let subDetails = ref<{ name: string; id: string }[]>([])
     for (let i = index.value; i < article.length; i++) {
         let current = detectTag(article[i])
         if (current.tag === 'H2') {
             if (currentName.value !== '') {
-                details.value.push({ name: currentName.value, details: subDetails.value })
+                details.value.push({ name: currentName.value, details: subDetails.value, id : current.id })
                 subDetails.value = []
             }
+            currentId.value = current.id
             currentName.value = current.name
         } else if (current.tag === 'H3') {
             subDetails.value.push({ name: current.name, id: current.id })
         }
     }
-    details.value.push({ name: currentName.value, details: subDetails.value })
+    details.value.push({ name: currentName.value, details: subDetails.value, id : currentId.value })
     return details.value
 }
 </script>
 
 
-<style>
-    @media (max-width: 992px) {
-        .content {
-            margin-left: 0;
-        }
-
-        #offcanvasSidebar {
-            width: 200px; /* Adjust the width of the sidebar */
-        }
-    }
-</style>
