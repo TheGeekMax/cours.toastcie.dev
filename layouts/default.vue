@@ -1,6 +1,6 @@
 <template>
     
-    <nav class="navbar navbar-expand-lg shadow fixed-top bg-light">
+    <nav class="navbar navbar-expand-lg shadow sticky-top bg-light">
         <div class="container px-4">
             <h5>AppName</h5>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
@@ -48,6 +48,9 @@ onMounted(() => {
     
     let data = document.getElementById('content')?.querySelector('div')
     let arrContent = Array.from(data?.children)
+
+    console.log(data)
+    console.log(arrContent)
     
     const articleDetail = getArticleDetail(arrContent)
     for (let i = 0; i < articleDetail.length; i++) {
@@ -91,14 +94,14 @@ let createDropDown = (name :string, details : { name: string; id: string }[]) =>
 }
 
 //for tag detection
-const H2_NAME = "ProseH2.vue"
-const H3_NAME = "ProseH3.vue"
+const H2_NAME = "H2"
+const H3_NAME = "H3"
 
 let detectTag = (tag : HTMLElement) => {
     // return { tag : TAG (H2, H3 or other), name : NAME (inner text without comments), id: ID (id of the tag)}
     let tagName = tag.innerText
     let tagId = tag.id
-    let tagType = tag.getAttribute('data-v-inspector')?.includes(H2_NAME) ? 'H2' : tag.getAttribute('data-v-inspector')?.includes(H3_NAME) ? 'H3' : 'OTHER'
+    let tagType = tag.tagName === "H2" ? H2_NAME : tag.tagName === "H3" ? H3_NAME : "OTHER"
     return { tag : tagType, name : tagName, id: tagId }
 }
 

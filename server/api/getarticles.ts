@@ -2,9 +2,9 @@ import fs from 'fs';
 
 let getArticlesName = () => {
     //get all articles name from
-    let articles = fs.readdirSync('./content/articles');
+    let articles = fs.readdirSync('./public/pictures/articleimg');
     //remove the file extension
-    articles = articles.map(article => article.replace('.md', ''));
+    articles = articles.map(article => article.replace('.png', ''));
     return articles;
 }
 
