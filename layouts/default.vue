@@ -1,15 +1,15 @@
 <template>
     
-    <nav class="navbar navbar-expand-lg shadow sticky-top bg-light">
+    <nav class="navbar navbar-expand-lg shadow sticky-top bg-dark text-light" data-bs-theme="dark">
         <div class="container px-4">
-            <h5>AppName</h5>
+            <h5>Toast-Courses</h5>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
-                <span class="navbar-toggler-icon"></span>
+                <Icon name="mdi:format-list-bulleted" size="1.5em"/>
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="top-navbar" aria-labelledby="top-navbarLabel">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
                     <div class="d-flex justify-content-between w-100">
-                        <h5>AppName</h5>
+                        <h5>Toast-Courses</h5>
                         <span class="navbar-toggler-icon"></span>
                     </div>
                 </button>
@@ -22,14 +22,64 @@
         </div>
     </nav>
 
-    <div class="content flex-grow-1 p-3 container" id="content" ref="content">
+    <div class="content flex-grow-1 p-3 container bg-dark text-light" id="content" ref="content">
         <slot />
     </div>
 </template>
 
 <style>
 img{
-    max-width: 200px;
+    max-width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+#content a{
+    text-decoration: none;
+    color: var(--bs-dark-rgb);
+}
+
+body{
+    background-color: rgb(33,37,41);
+}
+
+pre{
+    display: table;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid rgb(212,221,230);
+    width:80%;
+    min-height:50px;
+    max-width: 80%;
+    background-color: rgb(43,47,61);
+
+    /* center */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+code{
+    white-space: pre-wrap;
+    line-break: break-word;
 }
 </style>
 
