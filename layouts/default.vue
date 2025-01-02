@@ -38,6 +38,7 @@ img{
 h1 {
     text-align: center;
     font-size: 3em;
+    margin: 16px 0;
 }
 
 h2 {
@@ -80,6 +81,14 @@ pre{
 code{
     white-space: pre-wrap;
     line-break: break-word;
+}
+
+@media screen and (max-width: 768px) {
+    pre{
+        width: 100%;
+        max-width: 100%;
+    }
+    
 }
 </style>
 
