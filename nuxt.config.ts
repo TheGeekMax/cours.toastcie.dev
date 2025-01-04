@@ -2,10 +2,20 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/content'],
+  modules: ['@nuxt/content', '@nuxt/icon', '@nuxtjs/google-fonts'],
 
   content: {
-    documentDriven: true
+    documentDriven: true,
+    highlight: {
+      preload: ['python', 'bash'],
+      theme: "one-dark-pro",
+    },
+  },
+
+  googleFonts: {
+    families: {
+      roboto : true,
+    },
   },
 
   app: {

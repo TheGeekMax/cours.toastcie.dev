@@ -1,12 +1,17 @@
 <template>
     <NuxtLayout> 
-        <h1>Hello in the article section</h1>
-        <ul>
-            <li v-for="article in articles" :key="article.title">
-                <a :href="article.path">{{ article.title }}</a>
-                <img :src="article.picture" alt="article.title" height="30"/>
-            </li>
-        </ul>
+        <h1>Les articles</h1>
+
+        <div class="container">
+            <div class="row">
+                <ArticlesCard v-for="article in articles"
+                    :name="article.title"
+                    :picture="article.picture"
+                    :link="article.path"
+                />
+            </div>
+        </div>
+
     </NuxtLayout>
 </template>
 

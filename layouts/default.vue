@@ -1,35 +1,103 @@
-<template>
-    
-    <nav class="navbar navbar-expand-lg shadow sticky-top bg-light">
+<template>  
+    <nav class="navbar navbar-expand-lg shadow sticky-top bg-dark text-light" data-bs-theme="dark">
         <div class="container px-4">
-            <h5>AppName</h5>
+            <div class="d-flex align-items-center">
+                <img src="/pictures/logo.png" alt="logo" class="img-fluid" width="50px">
+                <h5 class="ms-2"><NuxtLink to="/" id="title-name">Toast-Courses</NuxtLink></h5>
+            </div>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
-                <span class="navbar-toggler-icon"></span>
+                <Icon name="mdi:format-list-bulleted" size="1.5em"/>
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="top-navbar" aria-labelledby="top-navbarLabel">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
                     <div class="d-flex justify-content-between w-100">
-                        <h5>AppName</h5>
+                        <h5>Toast-Courses</h5>
                         <span class="navbar-toggler-icon"></span>
                     </div>
                 </button>
                 <ul class="navbar-nav ms-lg-auto p-4 p-lg-0" id="navbar-links">
                     <SidebarLink to="/">Home</SidebarLink>
                     <SidebarLink to="/articles">Articles</SidebarLink>
-                    
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="content flex-grow-1 p-3 container" id="content" ref="content">
+    <div class="content flex-grow-1 p-3 container bg-dark text-light" id="content" ref="content">
         <slot />
     </div>
 </template>
 
 <style>
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+#title-name{
+    text-decoration: none;
+    color: var(--bs-light-rgb);
+}
+
 img{
-    max-width: 200px;
+    max-width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin: 16px 0;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+#content a{
+    text-decoration: none;
+    color: var(--bs-dark-rgb);
+}
+
+body{
+    background-color: rgb(33,37,41);
+}
+
+pre{
+    display: table;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid rgb(212,221,230);
+    width:80%;
+    min-height:50px;
+    max-width: 80%;
+    background-color: rgb(43,47,61);
+
+    /* center */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+code{
+    white-space: pre-wrap;
+    line-break: break-word;
+}
+
+@media screen and (max-width: 944px) {
+    pre{
+        width: 100%;
+        max-width: 100%;
+    }
 }
 </style>
 
@@ -39,6 +107,31 @@ img{
 const route = useRoute()
 const uri = route.path.split('/').reverse()
 const isArticles = uri[1] === 'articles'
+const name = isArticles ? uri[0] : 'Toast-Courses'
+
+//headers
+useHead({
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png'
+    }
+  ]
+})
+
+useSeoMeta({
+  title: name,
+  description: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  ogTitle: name,
+  ogDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  ogImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  ogUrl: 'https://cours.toastcie.dev' + route.path,
+  twitterTitle: name,
+  twitterDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  twitterImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  twitterCard: 'summary'
+})
 
 onMounted(() => {
     //get the 2nd child of test
