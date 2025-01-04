@@ -1,6 +1,6 @@
 <template>
-    <a :href="link" class="card col-lg-4 col-12 bg-dark">
-        <div>
+    <a :href="link" class="card col-lg-4 col-12 px-lg-0 px-5 bg-dark">
+        <div class="m-2">
             <img :src="picture" class="card-img-top" alt="course image">
             <div class="card-body text-center">
                 <h4>{{ name }}</h4>
@@ -32,8 +32,6 @@
 
     .card-img-top {
         max-width:100% !important;
-        height:33.3333%;
-        object-fit: cover;
     }
 </style>
 

@@ -1,7 +1,10 @@
 <template>  
     <nav class="navbar navbar-expand-lg shadow sticky-top bg-dark text-light" data-bs-theme="dark">
         <div class="container px-4">
-            <h5>Toast-Courses</h5>
+            <div class="d-flex align-items-center">
+                <img src="/pictures/logo.png" alt="logo" class="img-fluid" width="50px">
+                <h5 class="ms-2"><NuxtLink to="/" id="title-name">Toast-Courses</NuxtLink></h5>
+            </div>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
                 <Icon name="mdi:format-list-bulleted" size="1.5em"/>
             </button>
@@ -15,7 +18,6 @@
                 <ul class="navbar-nav ms-lg-auto p-4 p-lg-0" id="navbar-links">
                     <SidebarLink to="/">Home</SidebarLink>
                     <SidebarLink to="/articles">Articles</SidebarLink>
-                    
                 </ul>
             </div>
         </div>
@@ -27,6 +29,15 @@
 </template>
 
 <style>
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+#title-name{
+    text-decoration: none;
+    color: var(--bs-light-rgb);
+}
+
 img{
     max-width: 80%;
     display: block;
