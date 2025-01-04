@@ -1,19 +1,24 @@
 <template>
     <a :href="link" class="card col-lg-4 col-12 bg-dark">
-        <img :src="picture" class="card-img-top" alt="course image">
-        <div class="card-body text-center">
-            <h4>{{ name }}</h4>
+        <div>
+            <img :src="picture" class="card-img-top" alt="course image">
+            <div class="card-body text-center">
+                <h4>{{ name }}</h4>
+            </div>
         </div>
     </a>
 </template>
   
 <style scoped>
     .card {
-        padding:0;
+        padding:10px;
+        border:0;
+    }
+
+    .card>div{
         border: 2px solid rgb(212,220,234);
-        box-sizing: border-box;
-        max-width: 300px;
-        margin: 4px;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .card-body{
@@ -27,12 +32,8 @@
 
     .card-img-top {
         max-width:100% !important;
-    }
-
-    @media (max-width: 768px) {
-        .card {
-            max-width: 100%;
-        }
+        height:33.3333%;
+        object-fit: cover;
     }
 </style>
 

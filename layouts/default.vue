@@ -1,5 +1,4 @@
-<template>
-    
+<template>  
     <nav class="navbar navbar-expand-lg shadow sticky-top bg-dark text-light" data-bs-theme="dark">
         <div class="container px-4">
             <h5>Toast-Courses</h5>
@@ -83,12 +82,11 @@ code{
     line-break: break-word;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 944px) {
     pre{
         width: 100%;
         max-width: 100%;
     }
-    
 }
 </style>
 
@@ -98,6 +96,31 @@ code{
 const route = useRoute()
 const uri = route.path.split('/').reverse()
 const isArticles = uri[1] === 'articles'
+const name = isArticles ? uri[0] : 'Toast-Courses'
+
+//headers
+useHead({
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png'
+    }
+  ]
+})
+
+useSeoMeta({
+  title: name,
+  description: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  ogTitle: name,
+  ogDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  ogImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  ogUrl: 'https://cours.toastcie.dev' + route.path,
+  twitterTitle: name,
+  twitterDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
+  twitterImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  twitterCard: 'summary'
+})
 
 onMounted(() => {
     //get the 2nd child of test
