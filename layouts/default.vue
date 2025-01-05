@@ -125,11 +125,11 @@ useSeoMeta({
   description: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
   ogTitle: name,
   ogDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
-  ogImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  ogImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/logo.png',
   ogUrl: 'https://cours.toastcie.dev' + route.path,
   twitterTitle: name,
   twitterDescription: isArticles ? 'résumé sur ' + name : 'Bienvenue sur Toast-Courses',
-  twitterImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/artcontent/template.png',
+  twitterImage: isArticles ? '/pictures/articleimg/'+name+'.png' : '/pictures/logo.png',
   twitterCard: 'summary'
 })
 

@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
     highlight: {
-      preload: ['python', 'bash'],
+      preload: ['python', 'bash', 'java'],
       theme: "one-dark-pro",
     },
   },
@@ -28,6 +28,11 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
           crossorigin: 'anonymous',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/favicon.png'
         },
       ],
       script: [
