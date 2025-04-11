@@ -2,11 +2,13 @@
 
 ## généralités
 
+### uml
+
 en UML il existes plusieurs diagrammes, où chacun a un rôle bien précis.
 
 ![diagrammes](https://uml2.laurent-thiry.fr/file/all.png)
 
-## diagramme de classe/package
+## classe/package
 
 ### généralités
 
@@ -50,7 +52,7 @@ les packages sont des regroupements de classes, qui permettent de mieux organise
 
 entre plusieurs paquets, il existe 2 types de relations : les dépendances (extension sur l'image) et les associations(java.awt sur l'image)
 
-## diagramme d'objet/comunication
+## objet,comunication et deploiement
 
 ### objet
 
@@ -68,8 +70,15 @@ pour representer des fonctionnalité comme des appels de fonctions, on peut util
 
 ![communication](https://uml2.laurent-thiry.fr/file/objects22.png)
 
+### diagramme de déploiement
 
-## diagramme de séquence
+le diagramme de déploiement est un diagramme qui permet de représenter les machines et les logiciels qui tournent sur ces machines
+
+il est souvent utile pour comprendre la partie resaux d'un logiciel entre plusieurs machine, par example
+
+![diagramme de déploiement](https://uml2.laurent-thiry.fr/file/objects27.png)
+
+## séquence
 
 ### généralités
 
@@ -89,19 +98,9 @@ il est possible d'ajouter des états d'objet dans un diagramme de séquence afin
 
 ![état d'objet](https://uml2.laurent-thiry.fr/file/objects25.png)
 
-## diagramme de déploiement
+## état et timing
 
-### généralités
-
-le diagramme de déploiement est un diagramme qui permet de représenter les machines et les logiciels qui tournent sur ces machines
-
-il est souvent utile pour comprendre la partie resaux d'un logiciel entre plusieurs machine, par example
-
-![diagramme de déploiement](https://uml2.laurent-thiry.fr/file/objects27.png)
-
-## diagramme d'état
-
-### généralités
+### diagramme d'état
 
 le diagramme d'état est un diagramme qui permet de représenter les differents états d'un objet, et les transitions entre ces états
 
@@ -113,15 +112,12 @@ il est possible de creer une hierarchie de plusieurs états, afin de mieux les o
 
 ![états imbriqués](https://uml2.laurent-thiry.fr/file/objects31.png)
 
-## diagramme de timing
-
-### généralités
-
+### diagramme de timing
 le diagramme de timing est un diagramme qui permet de représenter en fonction du temps, les les differents états d'un objet, et les transitions entre ces états
 
 ![diagramme de timing](https://uml2.laurent-thiry.fr/file/objects33.png)
 
-## diagramme de cas d'utilisation
+## cas d'utilisation
 
 ### généralités
 
@@ -149,7 +145,3 @@ il existe 2 types de liaisons entre les acteurs et les cas d'utilisation :
 un cas d'utilisation peut être déraillé par un diagramme de séquence, afin de mieux comprendre le fonctionnement d'une fonctionalité
 
 ![details](https://uml2.laurent-thiry.fr/file/uc4.png)
-
-## contraintes OCL 
-
-//TODO

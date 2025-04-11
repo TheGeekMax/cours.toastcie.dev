@@ -1,0 +1,12 @@
+version: "3"
+services:
+  portfolio:
+    image: wikimax/cours
+    restart: always
+    networks:
+      - toastcie
+
+networks:
+  toastcie:
+    external:
+      name: toastcie-net
