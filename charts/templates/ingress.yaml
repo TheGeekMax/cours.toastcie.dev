@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "cours.fullname" . }}
+  name: {{ .Values.fullname }}
 spec:
   ingressClassName: {{ .Values.ingress.className }}
   rules:
@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "cours.fullname" . }}
+                name: {{ .Values.fullname }}
                 port:
                   number: {{ .Values.service.port }}
 {{- end }}

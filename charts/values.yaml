@@ -1,5 +1,7 @@
 replicaCount: 1
 
+fullname: cours
+
 image:
   repository: wikimax/cours
   tag: latest
