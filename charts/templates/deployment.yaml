@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cours.fullname" . }}
+  labels:
+    app: {{ include "cours.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "cours.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "cours.name" . }}
+    spec:
+      containers:
+        - name: {{ include "cours.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}

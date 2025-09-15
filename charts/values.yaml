@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: wikimax/cours
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  host: cours.toastcie.dev
